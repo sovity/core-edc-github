@@ -1,5 +1,5 @@
 
-# .github
+# Eclipse EDC .github files
 
 The [Eclipse core EDC](https://github.com/eclipse-edc/Connector) uses the [Eclipse .github actions](https://github.com/eclipse-edc/Connector).
 
@@ -9,8 +9,6 @@ We needed to both:
 * pin down the older scripts that were used during the build of the `core-edc` fork
 * update those scripts as they became obsolete (obsolete dependencies), keeping their behaviour.
 
-This fork of the `Eclipse .github` repository aims at doing exactly this.
+This fork of the `Eclipse EDC .github` repository aims at doing exactly this.
 
-The tags named after the forked branch in the `core-edc` e.g `0.7.2.A` track the versions that are in use with the `core-edc` fork `sovity/0.7.2.x`.
-
-The `core-edc` fork version and this repo's version don't need to be in sync or the same in the entire build file. These are just workaround to keep the build working.
+The forking and tagging in this repository is done during the forking of a new EDC Connector version, and is described in the `fork.md` issue of the core EDC sovity fork: https://github.com/sovity/core-edc/blob/default/.github/ISSUE_TEMPLATE/fork.md
