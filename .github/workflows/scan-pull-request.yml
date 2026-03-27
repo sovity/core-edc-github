@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: false
     steps:
-      - uses: deepakputhraya/action-pr-title@master
+      - uses: deepakputhraya/action-pr-title@077bddd7bdabd0d2b1b25ed0754c7e62e184d7ee # master
         with:
           # Match pull request titles conventional commit syntax (https://www.conventionalcommits.org/en/v1.0.0/)
           # (online tool for regex quick check: https://regex101.com/r/V5J8kh/1)
@@ -42,9 +42,9 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: false
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - name: 'Check Allowed Licenses'
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4
         with:
           fail-on-severity: critical
           # Representation of this list: https://www.eclipse.org/legal/licenses.php#
