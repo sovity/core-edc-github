@@ -10,7 +10,7 @@ on:
 
 jobs:
   trigger-workflow:
-    uses: eclipse-edc/.github/.github/workflows/discord-webhook.yml@main
+    uses: .github/workflows/discord-webhook.yml
     with:
       event_discussion_html_url: ${{ github.event.discussion.html_url }}
       event_discussion_title: ${{ github.event.discussion.title }}
