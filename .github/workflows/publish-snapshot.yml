@@ -27,7 +27,7 @@ jobs:
       needs.secrets-presence.outputs.HAS_OSSRH
     steps:
       - uses: actions/checkout@v4
-      - uses: eclipse-edc/.github/.github/actions/publish-maven-artifacts@main
+      - uses: .github/actions/publish-maven-artifacts
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}

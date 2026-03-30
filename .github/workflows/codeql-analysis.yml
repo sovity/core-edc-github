@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
+      - uses: .github/actions/setup-build
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL

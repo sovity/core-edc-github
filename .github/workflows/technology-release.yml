@@ -16,11 +16,11 @@ jobs:
         run: |
           VERSION=$(echo ${{ github.ref_name }} | cut -d '/' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-      - uses: eclipse-edc/.github/.github/actions/set-project-version@main
+      - uses: .github/actions/set-project-version
         with:
           version: ${{ steps.set-version.outputs.VERSION }}
 
-      - uses: eclipse-edc/.github/.github/actions/publish-maven-artifacts@main
+      - uses: .github/actions/publish-maven-artifacts
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}

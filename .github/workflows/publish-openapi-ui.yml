@@ -10,7 +10,7 @@ jobs:
       api_groups: ${{ steps.outputStep.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
+      - uses: .github/actions/setup-build
       - name: Generate API Specs
         run: ./gradlew resolve
       - uses: actions/upload-artifact@v4
@@ -36,7 +36,7 @@ jobs:
       versionFile: resources/openapi/${{ matrix.apiGroup }}.version
     steps:
       - uses: actions/checkout@v4
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
+      - uses: .github/actions/setup-build
       - uses: actions/download-artifact@v4
         with:
           name: openapi-spec
