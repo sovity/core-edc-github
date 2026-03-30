@@ -20,27 +20,27 @@ jobs:
       TAG: ${{ steps.set-tag.outputs.TAG }}
     steps:
       - uses: actions/checkout@v5
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
+      - uses: .github/actions/setup-build
 
       - id: set-version
         run: |
           VERSION=$(echo ${{ github.ref_name }} | cut -d '/' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-      - uses: eclipse-edc/.github/.github/actions/set-project-version@main
+      - uses: .github/actions/set-project-version
         with:
           version: ${{ steps.set-version.outputs.VERSION }}
 
       - name: Replace published DEPENDENCIES file link in NOTICE with the one just created
         run: sed -i "s#\[DEPENDENCIES\]\(.*\)#\[DEPENDENCIES\]\(DEPENDENCIES\)#g" NOTICE.md
 
-      - uses: eclipse-edc/.github/.github/actions/generate-dependencies-file@main
+      - uses: .github/actions/generate-dependencies-file
         with:
           run: strict
 
       - run: ./gradlew compileJava build -DrunAllTests=true -DexcludeTags=${{ inputs.test-tag-exclusions }}
 
-      - uses: eclipse-edc/.github/.github/actions/publish-maven-artifacts@main
+      - uses: .github/actions/publish-maven-artifacts
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
@@ -86,7 +86,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ref: ${{ github.ref_name }}
-      - uses: eclipse-edc/.github/.github/actions/publish-autodoc@main
+      - uses: .github/actions/publish-autodoc
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -97,7 +97,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ref: ${{ github.ref_name }}
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
+      - uses: .github/actions/setup-build
       - run: ./gradlew waitForPublishedArtifacts
 
   Post-To-Discord:

@@ -10,7 +10,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v5
-      - uses: eclipse-edc/.github/.github/actions/generate-dependencies-file@main
+      - uses: .github/actions/generate-dependencies-file
 
       - name: prepare deploy
         run: |

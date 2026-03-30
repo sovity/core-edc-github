@@ -13,6 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: eclipse-edc/.github/.github/actions/publish-autodoc@main
+      - uses: .github/actions/publish-autodoc
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

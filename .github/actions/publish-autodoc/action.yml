@@ -12,7 +12,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: eclipse-edc/.github/.github/actions/setup-build@main
+    - uses: .github/actions/setup-build
 
     - name: Override version if input is set
       shell: bash

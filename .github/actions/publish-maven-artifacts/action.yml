@@ -19,7 +19,7 @@ runs:
   using: "composite"
   steps:
 
-  - uses: eclipse-edc/.github/.github/actions/import-gpg-key@main
+  - uses: .github/actions/import-gpg-key
     with:
       gpg-private-key: ${{ inputs.gpg-private-key }}
 
