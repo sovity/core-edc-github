@@ -9,7 +9,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: .github/actions/generate-dependencies-file
 
       - name: prepare deploy
@@ -18,7 +18,7 @@ jobs:
           mv DEPENDENCIES public/
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: public
@@ -29,7 +29,7 @@ jobs:
     if: "failure()"
     runs-on: ubuntu-latest
     steps:
-      - uses: sarisia/actions-status-discord@v1
+      - uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708 # v1.16.0
         with:
           webhook: ${{ secrets.DISCORD_GITHUB_CI_WEBHOOK }}
           status: ${{ needs.publish-dependencies.result }}
