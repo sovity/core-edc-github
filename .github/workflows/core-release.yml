@@ -16,7 +16,7 @@ jobs:
       VERSION: ${{ steps.set-version.outputs.VERSION }}
       TAG: ${{ steps.set-tag.outputs.TAG }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - id: set-version
         run: |
           VERSION=$(echo ${{ github.ref_name }} | cut -d '/' -f 2)
@@ -42,14 +42,14 @@ jobs:
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
 
   create-github-release:
-    needs: [ Create-Tag ]
+    needs: [ create-tag ]
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Create GitHub Release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
         with:
           generateReleaseNotes: true
           tag: ${{ needs.Create-Tag.outputs.TAG }}
@@ -58,10 +58,10 @@ jobs:
 
   publish-autodoc:
     if: inputs.publish-autodoc == true
-    needs: [ Create-Tag ]
+    needs: [ create-tag ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ github.ref_name }}
       - uses: sovity/core-edc-github/.github/actions/publish-autodoc@0.11.1_2025-03-10_2

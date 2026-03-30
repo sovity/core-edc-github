@@ -26,7 +26,7 @@ jobs:
     if: |
       needs.secrets-presence.outputs.HAS_OSSRH
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: sovity/core-edc-github/.github/actions/publish-maven-artifacts@0.11.1_2025-03-10_2
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}

@@ -13,7 +13,7 @@ jobs:
   Publish-Artefacts:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - id: get-version
         run: |
           if [ -z ${{ inputs.version }} ]; then
@@ -30,7 +30,7 @@ jobs:
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
           osshr-username: ${{ secrets.ORG_OSSRH_USERNAME }}
           osshr-password: ${{ secrets.ORG_OSSRH_PASSWORD }}
-      - uses: sarisia/actions-status-discord@v1
+      - uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708 # v1.16.0
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_GITHUB_CI_WEBHOOK }}
@@ -41,7 +41,7 @@ jobs:
   Dependency-Review:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: sovity/core-edc-github/.github/actions/request-dependencies-review@0.11.1_2025-03-10_2
         with:
           gitlab-token: ${{ secrets.GITLAB_API_TOKEN }}
