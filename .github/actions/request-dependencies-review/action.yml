@@ -9,7 +9,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: eclipse-edc/.github/.github/actions/generate-dependencies-file@main
+    - uses: sovity/core-edc-github/.github/actions/generate-dependencies-file@0.11.1_2025-03-10_2
     - shell: bash
       run: |
         cat DEPENDENCIES* | grep restricted | sort -u | awk -F ',' '{print $1}' | java -jar dash.jar - -review -project technology.edc -token ${{ inputs.gitlab-token }} || true

@@ -10,7 +10,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: eclipse-edc/.github/.github/actions/setup-build@main
+    - uses: sovity/core-edc-github/.github/actions/setup-build@0.11.1_2025-03-10_2
     - name: Download latest Eclipse Dash
       shell: bash
       run: |

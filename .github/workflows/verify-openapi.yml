@@ -10,7 +10,7 @@ jobs:
       api_groups: ${{ steps.outputStep.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
+      - uses: sovity/core-edc-github/.github/actions/setup-build@0.11.1_2025-03-10_2
       - run: ./gradlew resolve
       - uses: actions/upload-artifact@v4
         with:
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
+      - uses: sovity/core-edc-github/.github/actions/setup-build@0.11.1_2025-03-10_2
       - uses: actions/download-artifact@v4
         with:
           name: openapi-spec

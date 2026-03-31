@@ -21,9 +21,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - uses: eclipse-edc/.github/.github/actions/setup-build@main
+  - uses: sovity/core-edc-github/.github/actions/setup-build@0.11.1_2025-03-10_2
 
-  - uses: eclipse-edc/.github/.github/actions/import-gpg-key@main
+  - uses: sovity/core-edc-github/.github/actions/import-gpg-key@0.11.1_2025-03-10_2
     with:
       gpg-private-key: ${{ inputs.gpg-private-key }}
 

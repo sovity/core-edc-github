@@ -10,7 +10,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: eclipse-edc/.github/.github/actions/generate-dependencies-file@main
+      - uses: sovity/core-edc-github/.github/actions/generate-dependencies-file@0.11.1_2025-03-10_2
 
       - name: prepare deploy
         run: |
