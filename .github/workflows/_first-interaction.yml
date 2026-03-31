@@ -8,6 +8,6 @@ on:
 
 jobs:
   trigger-workflow:
-    uses: .github/workflows/first-interaction.yml
+    uses: sovity/core-edc-github/.github/workflows/first-interaction.yml@0.14.0_2025-08-21_3
     secrets:
       envGH: ${{ secrets.GITHUB_TOKEN }}

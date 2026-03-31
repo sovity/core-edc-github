@@ -19,7 +19,7 @@ runs:
   using: "composite"
   steps:
 
-  - uses: .github/actions/import-gpg-key
+  - uses: sovity/core-edc-github/.github/actions/import-gpg-key@0.14.0_2025-08-21_3
     with:
       gpg-private-key: ${{ inputs.gpg-private-key }}
 

@@ -20,27 +20,27 @@ jobs:
       TAG: ${{ steps.set-tag.outputs.TAG }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: .github/actions/setup-build
+      - uses: sovity/core-edc-github/.github/actions/setup-build@0.14.0_2025-08-21_3
 
       - id: set-version
         run: |
           VERSION=$(echo ${{ github.ref_name }} | cut -d '/' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-      - uses: .github/actions/set-project-version
+      - uses: sovity/core-edc-github/.github/actions/set-project-version@0.14.0_2025-08-21_3
         with:
           version: ${{ steps.set-version.outputs.VERSION }}
 
       - name: Replace published DEPENDENCIES file link in NOTICE with the one just created
         run: sed -i "s#\[DEPENDENCIES\]\(.*\)#\[DEPENDENCIES\]\(DEPENDENCIES\)#g" NOTICE.md
 
-      - uses: .github/actions/generate-dependencies-file
+      - uses: sovity/core-edc-github/.github/actions/generate-dependencies-file@0.14.0_2025-08-21_3
         with:
           run: strict
 
       - run: ./gradlew compileJava build -DrunAllTests=true -DexcludeTags=${{ inputs.test-tag-exclusions }}
 
-      - uses: .github/actions/publish-maven-artifacts
+      - uses: sovity/core-edc-github/.github/actions/publish-maven-artifacts@0.14.0_2025-08-21_3
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
@@ -86,7 +86,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ github.ref_name }}
-      - uses: .github/actions/publish-autodoc
+      - uses: sovity/core-edc-github/.github/actions/publish-autodoc@0.14.0_2025-08-21_3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -97,7 +97,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ github.ref_name }}
-      - uses: .github/actions/setup-build
+      - uses: sovity/core-edc-github/.github/actions/setup-build@0.14.0_2025-08-21_3
       - run: ./gradlew waitForPublishedArtifacts
 
   Post-To-Discord:

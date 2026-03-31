@@ -10,7 +10,7 @@ on:
 
 jobs:
   trigger-workflow:
-    uses: .github/workflows/discord-webhook.yml
+    uses: sovity/core-edc-github/.github/workflows/discord-webhook.yml@0.14.0_2025-08-21_3
     with:
       event_discussion_html_url: ${{ github.event.discussion.html_url }}
       event_discussion_title: ${{ github.event.discussion.title }}

@@ -28,7 +28,7 @@ jobs:
           fi
           echo "type=$type" >> $GITHUB_OUTPUT
 
-      - uses: .github/actions/set-project-version
+      - uses: sovity/core-edc-github/.github/actions/set-project-version@0.14.0_2025-08-21_3
         with:
           version: ${{ inputs.version }}-SNAPSHOT
 
@@ -59,11 +59,11 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: main
-      - uses: .github/actions/setup-build
-      - uses: .github/actions/bump-version
+      - uses: sovity/core-edc-github/.github/actions/setup-build@0.14.0_2025-08-21_3
+      - uses: sovity/core-edc-github/.github/actions/bump-version@0.14.0_2025-08-21_3
         with:
           base_version: ${{ inputs.version }}
-      - uses: .github/actions/publish-maven-artifacts
+      - uses: sovity/core-edc-github/.github/actions/publish-maven-artifacts@0.14.0_2025-08-21_3
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
@@ -78,8 +78,8 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ needs.Prepare-Release.outputs.RELEASE_REF }}
-      - uses: .github/actions/setup-build
-      - uses: .github/actions/publish-maven-artifacts
+      - uses: sovity/core-edc-github/.github/actions/setup-build@0.14.0_2025-08-21_3
+      - uses: sovity/core-edc-github/.github/actions/publish-maven-artifacts@0.14.0_2025-08-21_3
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
