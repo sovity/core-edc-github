@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: .github/actions/setup-build
-      - uses: .github/actions/publish-maven-artifacts
+      - uses: sovity/core-edc-github/.github/actions/setup-build@0.15.0_2025-12-05_3
+      - uses: sovity/core-edc-github/.github/actions/publish-maven-artifacts@0.15.0_2025-12-05_3
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
