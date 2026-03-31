@@ -21,10 +21,10 @@ jobs:
           else
             echo "VERSION=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
           fi
-      - uses: .github/actions/set-project-version
+      - uses: sovity/core-edc-github/.github/actions/set-project-version@0.11.1_2025-03-10_3
         with:
           version: ${{ steps.get-version.outputs.VERSION }}
-      - uses: .github/actions/publish-maven-artifacts
+      - uses: sovity/core-edc-github/.github/actions/publish-maven-artifacts@0.11.1_2025-03-10_3
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
@@ -42,6 +42,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: .github/actions/request-dependencies-review
+      - uses: sovity/core-edc-github/.github/actions/request-dependencies-review@0.11.1_2025-03-10_3
         with:
           gitlab-token: ${{ secrets.GITLAB_API_TOKEN }}

@@ -22,7 +22,7 @@ jobs:
           VERSION=$(echo ${{ github.ref_name }} | cut -d '/' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-      - uses: .github/actions/set-project-version
+      - uses: sovity/core-edc-github/.github/actions/set-project-version@0.11.1_2025-03-10_3
         with:
           version: ${{ steps.set-version.outputs.VERSION }}
       - shell: bash
@@ -64,6 +64,6 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ github.ref_name }}
-      - uses: .github/actions/publish-autodoc
+      - uses: sovity/core-edc-github/.github/actions/publish-autodoc@0.11.1_2025-03-10_3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
