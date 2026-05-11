@@ -12,7 +12,14 @@ jobs:
   generate-and-deploy-doc:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: eclipse-edc/.github/.github/actions/publish-autodoc@main
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      # Check out the actions repo so local action references resolve
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: sovity/core-edc-github
+          ref: ${{ github.job_workflow_sha }}
+          path: .reusable-actions
+      - uses: ./.reusable-actions/.github/actions/publish-autodoc
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

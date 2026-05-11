@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: New Discussion
-        uses: tsickert/discord-webhook@v7.0.0
+        uses: tsickert/discord-webhook@86dc739f3f165f16dadc5666051c367efa1692f4 # v6.0.0
         if: ${{ (inputs.event_name == 'discussion') }}
         with:
           webhook-url: ${{ secrets.env_discord }}
@@ -59,7 +59,7 @@ jobs:
           embed-color: 16305330
 
       - name: New Issue
-        uses: tsickert/discord-webhook@v7.0.0
+        uses: tsickert/discord-webhook@86dc739f3f165f16dadc5666051c367efa1692f4 # v6.0.0
         if: ${{ (inputs.event_name == 'issues') }}
         with:
           webhook-url: ${{ secrets.env_discord }}
@@ -73,7 +73,7 @@ jobs:
           embed-color: 14023876
 
       - name: New Pull Request
-        uses: tsickert/discord-webhook@v7.0.0
+        uses: tsickert/discord-webhook@86dc739f3f165f16dadc5666051c367efa1692f4 # v6.0.0
         if: ${{ (inputs.event_name == 'pull_request_target') }}
         with:
           webhook-url: ${{ secrets.env_discord }}

@@ -15,20 +15,27 @@ jobs:
     outputs:
       RELEASE_REF: ${{ steps.commit-changes.outputs.RELEASE_REF }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      # Check out the actions repo so local action references resolve
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: sovity/core-edc-github
+          ref: ${{ github.job_workflow_sha }}
+          path: .reusable-actions
 
       - name: set release type
         shell: bash
         id: vars
         run: |
           type=bugfix
-          if [[ ${{ inputs.version }} == *0 ]] 
+          if [[ ${{ inputs.version }} == *0 ]]
           then
             type=release
           fi
           echo "type=$type" >> $GITHUB_OUTPUT
 
-      - uses: eclipse-edc/.github/.github/actions/set-project-version@main
+      - uses: ./.reusable-actions/.github/actions/set-project-version
         with:
           version: ${{ inputs.version }}-SNAPSHOT
 
@@ -56,14 +63,21 @@ jobs:
     needs: [ Prepare-Release ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: main
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
-      - uses: eclipse-edc/.github/.github/actions/bump-version@main
+
+      # Check out the actions repo so local action references resolve
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: sovity/core-edc-github
+          ref: ${{ github.job_workflow_sha }}
+          path: .reusable-actions
+      - uses: ./.reusable-actions/.github/actions/setup-build
+      - uses: ./.reusable-actions/.github/actions/bump-version
         with:
           base_version: ${{ inputs.version }}
-      - uses: eclipse-edc/.github/.github/actions/publish-maven-artifacts@main
+      - uses: ./.reusable-actions/.github/actions/publish-maven-artifacts
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
@@ -75,11 +89,18 @@ jobs:
     needs: [ Prepare-Release ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ needs.Prepare-Release.outputs.RELEASE_REF }}
-      - uses: eclipse-edc/.github/.github/actions/setup-build@main
-      - uses: eclipse-edc/.github/.github/actions/publish-maven-artifacts@main
+
+      # Check out the actions repo so local action references resolve
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: sovity/core-edc-github
+          ref: ${{ github.job_workflow_sha }}
+          path: .reusable-actions
+      - uses: ./.reusable-actions/.github/actions/setup-build
+      - uses: ./.reusable-actions/.github/actions/publish-maven-artifacts
         with:
           gpg-private-key: ${{ secrets.ORG_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.ORG_GPG_PASSPHRASE }}
